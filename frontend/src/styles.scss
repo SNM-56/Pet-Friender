@@ -1,3 +1,9 @@
+body {
+    display:flex;
+    justify-content: center;
+    background-color: rgb(120, 209, 209);
+}
+
 #root {
     text-align: center;
     display: flex;
@@ -52,19 +58,20 @@
   .swipe {
     position: absolute;
   }
-  
+  .pets {
+    display: flex;
+    justify-content: center;
+  }
+
   .cardContainer {
     width: 90vw;
     max-width: 260px;
     height: 300px;
-    display: block;
-    justify-content: center;
-    align-items: center;
   }
   
   .card {
     position: relative;
-    background-color: #f72929;
+    background-color: #ffffff;
     width: 80vw;
     max-width: 260px;
     height: 300px;
@@ -87,14 +94,14 @@
     position: absolute;
     bottom: 0;
     margin: 10px;
-    color: #fff;
+    color: #51ff00;
   }
   
   .infoText {
     width: 100%;
     justify-content: center;
     display: flex;
-    color: #fff;
+    color: #2600ff;
     animation-name: popup;
     animation-duration: 800ms;
   }
