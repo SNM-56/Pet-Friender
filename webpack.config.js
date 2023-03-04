@@ -1,7 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// import path from 'path';
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 module.exports = {
   mode: 'development',
@@ -41,7 +39,13 @@ module.exports = {
     ]
   },
   devServer: {
-    port: 3000
+    port: 8080,
+    proxy: {
+      '/': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      }
+    }
   },
   resolve: {
     fallback: {
