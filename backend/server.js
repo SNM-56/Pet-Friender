@@ -1,20 +1,35 @@
-// server static files
-const idKey = 'Td80x9tGqOQnNnlwX3oKu9hjvYBqbYZnuzGwijbPd4iEmsb7EH';
-const secret = 'SdDvmwwjpY4zjKYCpmGtwqGznXQu5JxY4ro8jOfK';
-let token;
+const express = require('express');
+const petController = require('./PetController');
 
-const fetchAccessToken = async () => {
-  const params = new URLSearchParams();
-  params.append('grant_type', 'client_credentials');
-  params.append('client_id', idKey);
-  params.append('client_secret', secret);
-  const petFinderRes = await fetch('https://api.petfinder.com/v2/oauth2/token', {
-    method: 'POST',
-    body: params
-  });
-  token = await petFinderRes.json();
-};
+const port = 3000;
+const app = express();
 
-fetchAccessToken();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-console.log('petFinder auth Token: LAST TIME ', token);
+// gets all pet data from petFinder API
+app.get('/api/cats', petController.getAuthToken, petController.getAllCats, (req, res) => {
+  res.status(200).send(res.locals.cats);
+});
+
+app.get('/api/dogs', petController.getAuthToken, petController.getAllDogs, (req, res) => {
+  res.status(200).send(res.locals.dogs);
+});
+
+app.get('/api/all', petController.getAuthToken, petController.getAllPets, (req, res) => {
+  res.status(200).send(res.locals.pets);
+});
+
+// global error handler
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: { err: 'An error occurred' }
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
+});
+
+app.listen(port, () => console.log(`listening on port: ${port}`));
