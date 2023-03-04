@@ -1,30 +1,26 @@
-// const express = require('express');
-// const path = require('path');
-const port = 3000;
-// import express from 'express';
-// import path from 'path';
-// import petController from './PetController.js';
-const path = require('path');
 const express = require('express');
 const petController = require('./PetController');
-// require('dotenv').config();
 
+const port = 3000;
 const app = express();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, '../dist')));
 
-// get All Pets
-app.get('/api/pets', petController.getAuthToken, petController.getAllPets, (req, res) => {
+// gets all pet data from petFinder API
+app.get('/api/cats', petController.getAuthToken, petController.getAllCats, (req, res) => {
+  res.status(200).send(res.locals.cats);
+});
+
+app.get('/api/dogs', petController.getAuthToken, petController.getAllDogs, (req, res) => {
+  res.status(200).send(res.locals.dogs);
+});
+
+app.get('/api/all', petController.getAuthToken, petController.getAllPets, (req, res) => {
   res.status(200).send(res.locals.pets);
 });
 
-// get Auth token from petFinder
-// app.get('/api', petController.getAuthToken, (req, res) => {
-//   res.status(200).send(res.locals.authToken);
-// });
-
-// error handler
+// global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
