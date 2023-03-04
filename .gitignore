@@ -1,0 +1,16 @@
+node_modules/
+package-lock.json
+.env
+dist/
+build/
+*.log
+.vscode/
+coverage/
+idea/
+*.swp
+.DS_Store
+*.cache
+secrets/
+*.key
+*.class
+*.jar

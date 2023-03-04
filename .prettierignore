@@ -1,0 +1,7 @@
+node_modules/
+dist/
+build/
+*.min.json
+*.node_modules
+*.json
+*.svg
