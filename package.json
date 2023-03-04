@@ -34,6 +34,7 @@
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.9.0",
+    "pg-pool": "^3.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.58.3"
