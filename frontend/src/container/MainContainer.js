@@ -18,7 +18,6 @@ import TinderCard from 'react-tinder-card';
 //    );
 // };
 
-
 const db = [
   {
     name: 'Dubs',
@@ -40,10 +39,11 @@ const db = [
     name: 'Little Meow Meow',
     url: 'https://i.pinimg.com/originals/05/39/f6/0539f678c0ffae8b9d263e9b54055a98.jpg'
   }
-]
+];
 
 const DogSwiper = () => {
   const characters = db;
+  const [dogData, setDogData] = useState();
   const [lastDirection, setLastDirection] = useState();
 
   const swiped = (direction, nameToDelete) => {
@@ -55,22 +55,44 @@ const DogSwiper = () => {
     console.log(name + ' left the screen!');
   };
 
+  useEffect(() => {
+    const fetchDogs = async () => {
+      try {
+        const response = await fetch('/api/dogs');
+        // const data = JSON.parse(response);
+        console.log('RESPONSE DATA', await response);
+        
+      } catch (error) {
+        console.log('Error in MainContainer useEffect to fetch dogs', error);
+      }
+    }
+    fetchDogs();
+  }, []);
+  // create a func
+  // fetch (/api/dogs)
+  // get the data and json
+  // store that data in state using useState
 
+  // have a useEffect function that calls the fetch func
   return (
     <div>
-      <h1>Pet swiper here</h1> 
-      <div className='cardContainer'>
-        {characters.map((character) =>
-          <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
-            <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
+      <h1>Pet swiper here</h1>
+      <div className="cardContainer">
+        {characters.map((character) => (
+          <TinderCard
+            className="swipe"
+            key={character.name}
+            onSwipe={(dir) => swiped(dir, character.name)}
+            onCardLeftScreen={() => outOfFrame(character.name)}>
+            <div style={{ backgroundImage: 'url(' + character.url + ')' }} className="card">
               <h3>{character.name}</h3>
             </div>
           </TinderCard>
-        )}
+        ))}
       </div>
-      {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
+      {lastDirection ? <h2 className="infoText">You swiped {lastDirection}</h2> : <h2 className="infoText" />}
     </div>
-  )
-}
+  );
+};
 
 export default DogSwiper;
