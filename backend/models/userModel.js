@@ -9,16 +9,16 @@ pool.connect((err, client, release) => {
   if (err) {
     return console.error('Error acquiring client', err.stack);
   }
-  client.query('SELECT NOW()', (err, result) => {
+  client.query('SELECT NOW()', (err, results) => {
     release();
     if (err) {
       return console.error('Error executing query', err.stack);
     }
-    console.log('test', result.rows);
+    return;
   });
 });
 
-// create a table
+// create user table
 const createUserTable = `CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   name VARCHAR( 50 ) NOT NULL,
@@ -31,7 +31,23 @@ pool.query(createUserTable, (err, results) => {
   if (err) {
     return console.error(err);
   }
-  console.log(results);
+  return;
 });
+
+// insert test data
+const jsonData = JSON.stringify({ species: 'Dog', age: 'Young', gender: 'Male', size: 'Medium' });
+
+const insertTest = `
+  INSERT INTO users (name, email, preference)
+  VALUES ('testUser', 'test@123.com', '${jsonData}')
+`;
+
+pool.query(insertTest, (err, results) => {
+  if (err) {
+    return console.error(err);
+  }
+  return;
+});
+
 
 pool.end();
