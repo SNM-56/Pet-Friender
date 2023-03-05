@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
+import SignupForm from '../component/SignupForm';
+import PreferenceForm from '../component/PreferenceForm';
 
 // const DogSwiper = () => {
 //   const onSwipe = (direction) => {

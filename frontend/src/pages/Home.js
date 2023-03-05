@@ -1,5 +1,5 @@
 const Home = () => {
-    console.log('hello')
+  console.log('hello');
 };
 
 export default Home;

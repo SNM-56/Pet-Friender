@@ -1,43 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function SignupForm() {
+function SignupForm({ setUserData, userData, setSignUpClicked }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [location, setLocation] = useState('');
+
+  const onInput = (e, setState) => {
+    setState(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newUserData = {
+      name,
+      email,
+      password,
+      location,
+      preferences: {
+        type: '',
+        age: '',
+        gender: '',
+        size: ''
+      }
+    };
+    setUserData(newUserData);
+    setSignUpClicked(true);
+  };
+
   // Set up user info
   return (
-    <div className="signupForm">
-      <h1>Sign-up</h1>
-      <div>
+    <div>
+      <form className="signupForm" onSubmit={handleSubmit}>
+        <h1>Sign-up</h1>
         <div>
           <label htmlFor="name">Name</label>
+          <input onInput={(e) => onInput(e, setName)} type="text" name="name" required />
         </div>
-        <div>
-          <input type="text" name="name" required />
-        </div>
-      </div>
-      <div>
         <div>
           <label htmlFor="email">Email</label>
+          <input onInput={(e) => onInput(e, setEmail)} type="text" name="email" required />
         </div>
-        <div>
-          <input type="text" name="email" required />
-        </div>
-      </div>
-      <div>
         <div>
           <label htmlFor="psw">Password</label>
+          <input onInput={(e) => onInput(e, setPassword)} type="password" name="password" />
         </div>
         <div>
-          <input type="text" name="password" />
+          <label htmlFor="zipcode">Zip Code</label>
+          <input onInput={(e) => onInput(e, setLocation)} type="text" name="location" />
         </div>
-      </div>
-      <div>
-        <div>
-          <label htmlFor="location">Location</label>
-        </div>
-        <div>
-          <input type="text" name="location" />
-        </div>
-      </div>
-      <button type="submit">Next</button>
+        <button type="submit">Next</button>
+      </form>
     </div>
   );
 }
