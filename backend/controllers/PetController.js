@@ -18,6 +18,7 @@ petController.getAuthToken = async (req, res, next) => {
       body: params
     });
 
+    res.locals.body = req.body;
     res.locals.authToken = await petFinderRes.json();
 
     return next();
@@ -55,7 +56,7 @@ petController.getAllPets = async (req, res, next) => {
 // gets dog data from PetFinder API and stores in res.locals.dogs
 petController.getAllDogs = async (req, res, next) => {
   try {
-    const url = `https://api.petfinder.com/v2/animals?type=Dog`;
+    const url = `https://api.petfinder.com/v2/animals?type=Dog&limit=100`;
     const accessTokenObject = res.locals.authToken;
     const petResults = await fetch(url, {
       headers: {
@@ -63,7 +64,7 @@ petController.getAllDogs = async (req, res, next) => {
       }
     });
     const json = await petResults.json();
-    // console.log('GET DOGS', await json);
+
     res.locals.dogs = json.animals;
     return next();
   } catch (e) {
@@ -75,10 +76,15 @@ petController.getAllDogs = async (req, res, next) => {
   }
 };
 
-// gets all cat data from PetFinder API and stores in res.locals.cats
-petController.getAllCats = async (req, res, next) => {
+// contact.address.postcode gives us the zip code
+
+petController.getPreferences = async (req, res, next) => {
+  //  location: '90032',
+  // preference: { species: 'Dog', age: 'Young', gender: 'Male', size: 'Medium' }
   try {
-    const url = `https://api.petfinder.com/v2/animals?type=Cat`;
+    const { location, preference } = res.locals.userData;
+    const type = preference.species;
+    const url = `https://api.petfinder.com/v2/animals?type=${type}&location=${location}&limit=100`;
     const accessTokenObject = res.locals.authToken;
     const petResults = await fetch(url, {
       headers: {
@@ -86,13 +92,13 @@ petController.getAllCats = async (req, res, next) => {
       }
     });
     const json = await petResults.json();
-    res.locals.cats = json.animals;
+    res.locals.preferences = json.animals;
     return next();
   } catch (e) {
     return next({
-      log: 'Error in petController.getPets',
+      log: 'Error in petController.getPreferences',
       status: 400,
-      message: { err: `in petController.getAllCats: ${e}` }
+      message: { err: `in petController.getPreferences: ${e}` }
     });
   }
 };

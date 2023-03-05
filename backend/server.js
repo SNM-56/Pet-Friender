@@ -1,5 +1,6 @@
 const express = require('express');
-const petController = require('./PetController');
+const petController = require('./controllers/PetController');
+const dbController = require('./middleware/dbController');
 
 const port = 3000;
 const app = express();
@@ -7,20 +8,22 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// gets all pet data from petFinder API
-app.get('/api/cats', petController.getAuthToken, petController.getAllCats, (req, res) => {
-  res.status(200).send(res.locals.cats);
-});
-
-app.get('/api/dogs', petController.getAuthToken, petController.getAllDogs, (req, res) => {
-  res.status(200).send(res.locals.dogs);
-});
+app.post(
+  '/api/preferences/',
+  petController.getAuthToken,
+  dbController.getUserData,
+  petController.getPreferences,
+  (req, res) => {
+    res.status(200).send(res.locals.preferences);
+  }
+);
 
 app.get('/api/all', petController.getAuthToken, petController.getAllPets, (req, res) => {
   res.status(200).send(res.locals.pets);
 });
 
 // global error handler
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',

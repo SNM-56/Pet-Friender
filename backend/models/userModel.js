@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: `postgres://fizxmgog:OGEYeJGBLpmp90rgSiJfh825on0nXDLc@mahmud.db.elephantsql.com/fizxmgog`,
+  connectionString: `postgres://fizxmgog:OGEYeJGBLpmp90rgSiJfh825on0nXDLc@mahmud.db.elephantsql.com/fizxmgog`
 });
 
 // testing the connection
@@ -38,16 +39,25 @@ pool.query(createUserTable, (err, results) => {
 const jsonData = JSON.stringify({ species: 'Dog', age: 'Young', gender: 'Male', size: 'Medium' });
 
 const insertTest = `
-  INSERT INTO users (name, email, preference)
-  VALUES ('testUser', 'test@123.com', '${jsonData}')
+  INSERT INTO users (name, email, location, preference)
+  VALUES ('testUser', 'test@123.com', '90032', '${jsonData}')
 `;
 
-pool.query(insertTest, (err, results) => {
+// pool.query(insertTest, async (err, results) => {
+//   if (err) {
+//     return console.error(err);
+//   }
+//   return;
+// });
+
+pool.query('SELECT * FROM users', (err, results) => {
   if (err) {
-    return console.error(err);
+    return console.error('ERROR IN SELECT ALL FROM USERS', err);
   }
+  // console.log('RESULT ROWS', results.rows);
   return;
 });
 
+// pool.end();
 
-pool.end();
+module.exports = pool;

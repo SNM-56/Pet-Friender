@@ -58,9 +58,14 @@ const DogSwiper = () => {
   useEffect(() => {
     const fetchDogs = async () => {
       try {
-        const response = await fetch('/api/dogs');
+        const response = await fetch('/api/preferences', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: 22 }) // THIS IS SAMPLE ID, CHANGE ME
+        });
         const data = await response.json();
-        // console.log('RESPONSE DATA', await data);
         setDogData(data);
       } catch (error) {
         console.log('Error in MainContainer useEffect to fetch dogs', error);
@@ -69,19 +74,8 @@ const DogSwiper = () => {
     fetchDogs();
   }, []);
 
-  console.log('Dog Data:', dogData);
-  // const logger = () => {
-  //   async () => console.log('in Logger', await dogData);
-  // }
+  console.log('DOGGY DATA', dogData);
 
-  // logger();
-
-  // create a func
-  // fetch (/api/dogs)
-  // get the data and json
-  // store that data in state using useState
-
-  // have a useEffect function that calls the fetch func
   return (
     <div>
       <h1>Pet swiper here</h1>
