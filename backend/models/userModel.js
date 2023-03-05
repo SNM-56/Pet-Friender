@@ -58,6 +58,4 @@ pool.query('SELECT * FROM users', (err, results) => {
   return;
 });
 
-// pool.end();
-
 module.exports = pool;

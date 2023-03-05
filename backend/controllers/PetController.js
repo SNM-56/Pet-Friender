@@ -2,8 +2,21 @@
 const petController = {};
 
 // TODO (Chris/Alex): Modify to use environment variables to store idKey and secret
-const idKey = 'Td80x9tGqOQnNnlwX3oKu9hjvYBqbYZnuzGwijbPd4iEmsb7EH';
-const secret = 'SdDvmwwjpY4zjKYCpmGtwqGznXQu5JxY4ro8jOfK';
+//alex's key/secret
+// const idKey = 'Td80x9tGqOQnNnlwX3oKu9hjvYBqbYZnuzGwijbPd4iEmsb7EH';
+// const secret = 'SdDvmwwjpY4zjKYCpmGtwqGznXQu5JxY4ro8jOfK';
+
+//tricia's keys
+// const idKey = 'ETP9nJrnccMT9nAYIQpa8zxOKgrIJUyIMFsJNjXWIfg9jpAwd9'
+// const secret = '0a8locc2QKcZd8gj9gfCfHz4ZzZoGIsJlyqZd45p'
+
+// chris' key/secret
+const idKey = 'NkAKvJ91IkpakFYHnV8HYcgyqeOdFcYQvnWOlKrhptNrn4kFz8';
+const secret = 'pmNPLwJqpIR6rxDpl49qY1VjVg5zvRug8Kza60WW';
+
+// jamie's key/secret
+// const idKey = 'EGPxXXOai1WgDyLsFOWSQXpVHrX7JQ3SDxvBkAwdfl1NzTC60l'
+// const secret = 'M1rtNVQmo9G5SrmqR73hxXXbclcpjgT8odPyskCB'
 
 // gets auth token from petFinder API
 petController.getAuthToken = async (req, res, next) => {
@@ -18,10 +31,8 @@ petController.getAuthToken = async (req, res, next) => {
       method: 'POST',
       body: params
     });
-
     res.locals.body = req.body;
     res.locals.authToken = await petFinderRes.json();
-
     return next();
   } catch (e) {
     return next({
@@ -65,7 +76,6 @@ petController.getAllDogs = async (req, res, next) => {
       }
     });
     const json = await petResults.json();
-
     res.locals.dogs = json.animals;
     return next();
   } catch (e) {
