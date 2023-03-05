@@ -1,8 +1,6 @@
 import React from 'react';
 
-function PreferenceForm() {
-  // Save submitted options
-
+function PreferenceForm({ setUserData }) {
   return (
     <div className="preferenceForm">
       <h1>Preferences</h1>
@@ -35,7 +33,9 @@ function PreferenceForm() {
           <option value="medium">Small</option>
         </select>
       </div>
-      <button className="submitButton" type="submit">Next</button>
+      <button className="submitButton" type="submit">
+        Next
+      </button>
     </div>
   );
 }
