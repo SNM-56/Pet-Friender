@@ -17,6 +17,6 @@ function App() {
     {/* <Route path='/' element={<Home />}> */}
     <Route path="/" element={<Petfinder />} />
   </Routes>
-</BrowserRouter>
+</BrowserRouter>;
 
 export default App;
