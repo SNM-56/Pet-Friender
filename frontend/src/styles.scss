@@ -2,6 +2,7 @@ body {
     display:flex;
     justify-content: center;
     background-color: rgb(120, 209, 209);
+    text-align: center;
 }
 
 #root {
@@ -54,6 +55,20 @@ body {
   h2 {
     color: #fff;
   }
+
+  .signupForm, .preferenceForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  input, select, text, button[type=submit] {
+    width: 100%;
+    padding: 6px 2px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
   
   .swipe {
     position: absolute;
@@ -86,9 +101,9 @@ body {
     height: 100%;
   }
   
-  .swipe:last-of-type {
+  // .swipe:last-of-type {
   
-  }
+  // }
   
   .card h3 {
     position: absolute;
