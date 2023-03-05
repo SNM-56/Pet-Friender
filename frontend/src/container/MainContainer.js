@@ -20,31 +20,9 @@ import PreferenceForm from '../component/PreferenceForm';
 //    );
 // };
 
-const db = [
-  {
-    name: 'Dubs',
-    url: 'https://images.seattletimes.com/wp-content/uploads/2018/03/dubs1.jpg?d=780x495'
-  },
-  {
-    name: 'Golden Girl',
-    url: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*'
-  },
-  {
-    name: 'Cheeky Boy',
-    url: 'https://d.newsweek.com/en/full/2074004/puppy.jpg'
-  },
-  {
-    name: 'Grumpy Boy',
-    url: 'https://media.istockphoto.com/id/460588321/photo/mean-dog.jpg?s=612x612&w=0&k=20&c=Xeq9HpMEjdNQhhgus3hOLfxvL47gucbFy-oQOerYF20='
-  },
-  {
-    name: 'Little Meow Meow',
-    url: 'https://i.pinimg.com/originals/05/39/f6/0539f678c0ffae8b9d263e9b54055a98.jpg'
-  }
-];
+
 
 const DogSwiper = () => {
-  const characters = db;
   const [dogData, setDogData] = useState();
   const [lastDirection, setLastDirection] = useState();
 
@@ -56,7 +34,7 @@ const DogSwiper = () => {
   const outOfFrame = (name) => {
     console.log(name + ' left the screen!');
   };
-
+  
   useEffect(() => {
     const fetchDogs = async () => {
       try {
@@ -73,26 +51,60 @@ const DogSwiper = () => {
         console.log('Error in MainContainer useEffect to fetch dogs', error);
       }
     };
+
     fetchDogs();
   }, []);
 
-  console.log('DOGGY DATA', dogData);
+  // cards = dogData.map((dog) => {
+  //   const url = 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/60481973/1/?bust=1678048544&width=450';
+  //   const img = dog.primary_photo_cropped.hasOwnProperty() !== null ? dog.primary_photo_cropped.medium : url;
+  //   return (
+  //     <TinderCard
+  //       className="swipe"
+  //       key={dog.id}
+  //       onSwipe={(dir) => swiped(dir, dog.name)}
+  //       onCardLeftScreen={() => outOfFrame(dog.name)}>
+  //       <div
+  //         className="card"
+  //         style={{
+  //           backgroundImage: `url(${url})`,
+  //           backgroundSize: 'cover'
+  //         }}>
+  //         <h3>{dog.name}</h3>
+  //       </div>
+  //     </TinderCard>
+  //   );
+  // });
+
+
+
+  // console.log('DOGGY DATA', dogData);
 
   return (
     <div>
       <h1>Pet swiper here</h1>
       <div className="cardContainer">
-        {characters.map((character) => (
-          <TinderCard
-            className="swipe"
-            key={character.name}
-            onSwipe={(dir) => swiped(dir, character.name)}
-            onCardLeftScreen={() => outOfFrame(character.name)}>
-            <div style={{ backgroundImage: 'url(' + character.url + ')' }} className="card">
-              <h3>{character.name}</h3>
-            </div>
-          </TinderCard>
-        ))}
+        {dogData &&
+          dogData.map((dog) => {
+            const url = 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/60481973/1/?bust=1678048544&width=450';
+            const imgUrl = dog.primary_photo_cropped !== null ? dog.primary_photo_cropped.medium : url;
+            return (
+              <TinderCard
+                className="swipe"
+                key={dog.id}
+                onSwipe={(dir) => swiped(dir, dog.name)}
+                onCardLeftScreen={() => outOfFrame(dog.name)}>
+                <div
+                  className="card"
+                  style={{
+                    backgroundImage: `url(${imgUrl})`,
+                    backgroundSize: 'cover'
+                  }}>
+                  <h3>{dog.name}</h3>
+                </div>
+              </TinderCard>
+            );
+          })}
       </div>
       {lastDirection ? <h2 className="infoText">You swiped {lastDirection}</h2> : <h2 className="infoText" />}
     </div>

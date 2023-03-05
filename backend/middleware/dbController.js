@@ -11,7 +11,6 @@ dbController.getUserData = async (req, res, next) => {
         return next('Error getting user data in dbController.getUserData', err);
       } else {
         res.locals.userData = result.rows[0];
-        console.log('res.locals.userData', res.locals.userData);
         return next();
       }
     });
