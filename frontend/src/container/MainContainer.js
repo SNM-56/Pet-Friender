@@ -59,15 +59,23 @@ const DogSwiper = () => {
     const fetchDogs = async () => {
       try {
         const response = await fetch('/api/dogs');
-        // const data = JSON.parse(response);
-        console.log('RESPONSE DATA', await response);
-        
+        const data = await response.json();
+        // console.log('RESPONSE DATA', await data);
+        setDogData(data);
       } catch (error) {
         console.log('Error in MainContainer useEffect to fetch dogs', error);
       }
-    }
+    };
     fetchDogs();
   }, []);
+
+  console.log('Dog Data:', dogData);
+  // const logger = () => {
+  //   async () => console.log('in Logger', await dogData);
+  // }
+
+  // logger();
+
   // create a func
   // fetch (/api/dogs)
   // get the data and json

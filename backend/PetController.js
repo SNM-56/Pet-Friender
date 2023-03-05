@@ -63,7 +63,7 @@ petController.getAllDogs = async (req, res, next) => {
       }
     });
     const json = await petResults.json();
-    console.log('GET DOGS', await json);
+    // console.log('GET DOGS', await json);
     res.locals.dogs = json.animals;
     return next();
   } catch (e) {
