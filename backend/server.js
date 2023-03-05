@@ -8,6 +8,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+/*
+  First middleware makes a request to PetFinder API to get an access token
+  Second middleware gets user data from postgres database
+  Third middleware gets a list of pets that match the user's preferences from the API
+*/
 app.post(
   '/api/preferences/',
   petController.getAuthToken,
@@ -18,6 +23,7 @@ app.post(
   }
 );
 
+// gets all pets from PetFinder API
 app.get('/api/all', petController.getAuthToken, petController.getAllPets, (req, res) => {
   res.status(200).send(res.locals.pets);
 });
