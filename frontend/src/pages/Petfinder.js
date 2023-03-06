@@ -10,19 +10,30 @@ const Petfinder = () => {
 
   const [userData, setUserData] = useState({});
   const [signUpClicked, setSignUpClicked] = useState(false);
+  const [preferenceClicked, setPreferenceClicked] = useState(false);
 
   // Determine the table to display between search result and my recipe
   let tableToDisplay;
   if (!signUpClicked) {
     tableToDisplay = <SignupForm userData={userData} setUserData={setUserData} setSignUpClicked={setSignUpClicked} />;
   } else {
-    tableToDisplay = <PreferenceForm userData={userData} setUserData={setUserData} />;
+    tableToDisplay = (
+      <PreferenceForm
+        userData={userData}
+        setUserData={setUserData}
+        preferenceClicked={preferenceClicked}
+        setPreferenceClicked={setPreferenceClicked}
+      />
+    );
+  }
+
+  if (preferenceClicked) {
+    tableToDisplay = <MainContainer userData={userData} setUserData={setUserData} />;
   }
 
   return (
     <div className="petfinder">
       <div className="pets">{tableToDisplay}</div>
-      {/* <PreferenceForm setUserData={setUserData} userData={userData} /> */}
     </div>
   );
 };
