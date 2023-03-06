@@ -28,6 +28,8 @@ body {
   
   .app {
     overflow: hidden;
+    display: flex;
+    justify-content: center;
   }
 
   .app>div {
