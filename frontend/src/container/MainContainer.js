@@ -81,7 +81,7 @@ const DogSwiper = () => {
   // console.log('DOGGY DATA', dogData);
 
   return (
-    <div>
+    <div className="cardWrapper">
       <h1>Pet swiper here</h1>
       <div className="cardContainer">
         {dogData &&
