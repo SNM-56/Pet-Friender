@@ -17,7 +17,7 @@ function SignupForm({ setUserData, userData, setSignUpClicked }) {
       email,
       password,
       location,
-      preferences: {
+      preference: {
         type: '',
         age: '',
         gender: '',

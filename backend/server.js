@@ -23,6 +23,10 @@ app.post(
   }
 );
 
+app.post('/signup', dbController.checkValid, dbController.createUser, dbController.endPool, (req, res) => {
+  res.status(200).json(res.locals.body);
+});
+
 // gets all pets from PetFinder API
 app.get('/api/all', petController.getAuthToken, petController.getAllPets, (req, res) => {
   res.status(200).send(res.locals.pets);

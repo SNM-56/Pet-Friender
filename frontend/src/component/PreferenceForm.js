@@ -6,7 +6,7 @@ function PreferenceForm({ userData, setUserData, preferenceClicked, setPreferenc
     const formData = new FormData(e.currentTarget);
     const userPreferences = {
       ...userData,
-      preferences: {
+      preference: {
         type: formData.get('species'),
         age: formData.get('age'),
         gender: formData.get('gender'),
@@ -14,10 +14,23 @@ function PreferenceForm({ userData, setUserData, preferenceClicked, setPreferenc
       }
     };
     setUserData(userPreferences);
+    createUser(userPreferences);
     setPreferenceClicked(true);
   };
 
-  console.log(userData);
+  const createUser = async (data) => {
+    try {
+      await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+    } catch (error) {
+      console.log('Error in PreferenceForm', error);
+    }
+  };
 
   return (
     <div className="preferenceForm">
