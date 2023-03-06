@@ -104,7 +104,7 @@ body {
 
     label {
       color:hsl(167, 14%, 12%);
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-family: 'Open Sans', sans-serif;
     }
 
@@ -165,14 +165,14 @@ body {
     position: absolute;
     bottom: 0;
     margin: 10px;
-    color: #ffffff;
+    color: white;
   }
   
   .infoText {
     width: 100%;
     justify-content: center;
     display: flex;
-    color: #eaeaea;
+    color: #61a57b;
     animation-name: popup;
     animation-duration: 800ms;
   }
