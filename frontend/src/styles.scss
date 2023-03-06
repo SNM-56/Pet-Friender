@@ -91,7 +91,7 @@ body {
 
     input, select, text {
       width: 100%;
-      padding: 6px 3px; 
+      padding: 6px 2px; 
       margin: 5px 3px;
       color: #959b93;
       border: 2px solid rgb(120, 209, 209);
@@ -100,11 +100,10 @@ body {
       height: 2rem;
       background: #FFF0F0;
       box-shadow: 4px 6px 0px #000000;
-    }
 
     label {
       color:hsl(167, 14%, 12%);
-      font-size: 1.1rem;
+      font-size: 0.5rem;
       font-family: 'Open Sans', sans-serif;
     }
 
