@@ -52,6 +52,23 @@ body {
 
 // .swipe:last-of-type {
 
+    input, select, text {
+      width: 100%;
+      padding: 6px 2px; 
+      margin: 5px 3px;
+      color: #959b93;
+      border: 2px solid rgb(120, 209, 209);
+      border-radius: 10px;
+      letter-spacing: 1px;
+      height: 2rem;
+      background: #FFF0F0;
+      box-shadow: 4px 6px 0px #000000;
+
+    label {
+      color:hsl(167, 14%, 12%);
+      font-size: 0.5rem;
+      font-family: 'Open Sans', sans-serif;
+    }
 // }
 
 .card h3 {
@@ -96,6 +113,26 @@ body {
   0% {
     transform: scale(1, 1);
   }
+  
+  // .swipe:last-of-type {
+  
+  // }
+  
+  .card h3 {
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    color: white;
+  }
+  
+  .infoText {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    color: #61a57b;
+    animation-name: popup;
+    animation-duration: 800ms;
+
   10% {
     transform: scale(1.1, 1.1);
   }
