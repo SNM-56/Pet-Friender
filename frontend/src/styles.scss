@@ -1,93 +1,56 @@
-
-
 body {
-    display:flex;
-    justify-content: center;
-    // background: #78d1d1;
-    background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(139,201,123,1) 80%, rgba(253,210,45,1) 100%);
-    text-align: center;
-    font-family: 'Roboto', 'Open Sans', sans-serif;
+
+  input,
+  select,
+  text {
+    width: 100%;
+    padding: 6px 2px;
+    margin: 5px 0;
+    color: #959b93;
+    border: 2px solid rgb(120, 209, 209);
+    border-radius: 10px;
+    letter-spacing: 1px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 2em;
+    box-sizing: border-box;
+    color: #000000;
+    border: 2px solid rgb(120, 209, 209);
+    border-radius: 10px;
+    padding: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 hwb(167 2% 61%);
+  }
 }
 
-// #root {
-//     text-align: center;
-//     display: flex;
-//     justify-content: center;
-//     width: 100vw;
-//     min-height: 100vh;
-//     overflow: hidden;
-//     background: linear-gradient(#fff, #999);
-//     background-color: linear-gradient(#e66465, #9198e5);
-//   }
-  
-  * {
-    user-select: none;
-  }
-  
-  #root>div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .app {
-    overflow: hidden;
-  }
+.cardContainer {
+  width: 90vw;
+  max-width: 260px;
+  height: 300px;
+  background: white;
+}
 
-  .app>div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .row {
-    flex-direction: row !important;
-  }
-  
-  .row>* {
-    margin: 5px;
-  }
-  
-  h1 {
-    // font-family: 'Damion', cursive;
-    color: hsl(0, 0%, 0%);
-    text-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
-  }
-  
-  h2 {
-    color: #fff;
-  }
+.card {
+  position: relative;
+  background-color: #ffffff;
+  width: 80vw;
+  max-width: 260px;
+  height: 300px;
+  // box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+}
 
-  .swipe {
-    position: absolute;
-  }
+.cardContent {
+  width: 100%;
+  height: 100%;
+}
 
-  .pets {
-    display: flex;
-    justify-content: center;
-    width: auto;
-  }
-
-  .signupForm, .preferenceForm {
-    background: #FF90E8;
-  }
-
-  .signupForm, .preferenceForm, .cardWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: left;
-    padding: 2em 2.5em 4em 2em;
-    margin-top: 2em;
-    border-radius: 2em;
-    background: white;
-    
-
-    div {
-      margin-top: 0.5em;
-    }
+// .swipe:last-of-type {
 
     input, select, text {
       width: 100%;
@@ -106,54 +69,49 @@ body {
       font-size: 0.5rem;
       font-family: 'Open Sans', sans-serif;
     }
+// }
 
-    button {
-      width: 105%;
-      margin-top: 2em;
-      color: rgb(120, 209, 209);
-      border: 2px solid rgb(93, 168, 168);
-      font-size: 1em;
-      font-weight: bold;
-      border-radius: 10px;
-      padding: 12px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      left: 22px;
-      top: 209px;
-      box-shadow: 4px 6px 0px #000000;
-      z-index: 1;
-      transition: all 0.5s;
-    }
+.card h3 {
+  position: absolute;
+  bottom: 0;
+  margin: 10px;
+  color: #ffffff;
+}
 
-    button:hover {
-      color: white;
-      background: rgb(34,193,195);
-      // background: linear-gradient(to right, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-    }
-  }
+.infoText {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  color: #eaeaea;
+  animation-name: popup;
+  animation-duration: 800ms;
+}
 
-  .cardContainer {
-    width: 90vw;
-    max-width: 260px;
-    height: 300px;
-    background: white;
   }
-  
-  .card {
-    position: relative;
-    background-color: #ffffff;
-    width: 80vw;
-    max-width: 260px;
-    height: 300px;
-    // box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
-    border-radius: 20px;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .cardContent {
-    width: 100%;
-    height: 100%;
+}
+
+.buttons button {
+  flex-shrink: 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  background-color: #9198e5;
+  transition: 200ms;
+  margin: 10px;
+  font-weight: bolder;
+  width: 160px;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+}
+
+.buttons button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(1, 1);
   }
   
   // .swipe:last-of-type {
@@ -174,45 +132,30 @@ body {
     color: #61a57b;
     animation-name: popup;
     animation-duration: 800ms;
+
+  10% {
+    transform: scale(1.1, 1.1);
   }
-  
-  .buttons {
-    margin: 20px;
-    display: flex;
-    flex-wrap: wrap;
+  30% {
+    transform: scale(0.9, 0.9);
   }
-  
-  @media (max-width: 625px) {
-    .buttons {
-      flex-direction: column;
-    }
+  50% {
+    transform: scale(1, 1);
   }
-  
-  .buttons button {
-    flex-shrink: 0;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
-    font-size: 18px;
-    background-color: #9198e5;
-    transition: 200ms;
-    margin: 10px;
-    font-weight: bolder;
-    width: 160px;
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
+  57% {
+    transform: scale(1, 1);
   }
-  
-  .buttons button:hover {
-    transform: scale(1.05);
+  64% {
+    transform: scale(1, 1);
   }
-  
-  @keyframes popup {
-    0%   { transform: scale(1,1) }
-    10%  { transform: scale(1.1,1.1) }
-    30%  { transform: scale(.9,.9) }
-    50%  { transform: scale(1,1) }
-    57%  { transform: scale(1,1) }
-    64%  { transform: scale(1,1) }
-    100% { transform: scale(1,1) }
+  100% {
+    transform: scale(1, 1);
   }
+}
+
+.lazyLoadPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
