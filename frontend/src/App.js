@@ -6,17 +6,15 @@ import Petfinder from './pages/Petfinder';
 function App() {
   return (
     <div className="App">
-      <h1>APP.JS</h1>
-      <p>In app.js</p>
       <Petfinder />
     </div>
   );
 }
-<BrowserRouter>
-  <Routes>
-    {/* <Route path='/' element={<Home />}> */}
-    <Route path="/" element={<Petfinder />} />
-  </Routes>
-</BrowserRouter>;
+// {/* <BrowserRouter>
+//   <Routes>
+//     {/* <Route path='/' element={<Home />}> */}
+//     <Route path="/" element={<Petfinder />} />
+//   </Routes>
+// </BrowserRouter>; */}
 
 export default App;
