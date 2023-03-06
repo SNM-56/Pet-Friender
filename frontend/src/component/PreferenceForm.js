@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PreferenceForm({ setUserData, userData }) {
+function PreferenceForm({ userData, setUserData, preferenceClicked, setPreferenceClicked }) {
   const onHandleClick = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -13,10 +13,12 @@ function PreferenceForm({ setUserData, userData }) {
         size: formData.get('size')
       }
     };
-
     setUserData(userPreferences);
+    setPreferenceClicked(true);
   };
+
   console.log(userData);
+
   return (
     <div className="preferenceForm">
       <h1>Preferences</h1>
