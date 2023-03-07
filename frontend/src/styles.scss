@@ -59,7 +59,8 @@ h2 {
 
 .signupForm,
 .preferenceForm,
-.cardWrapper .signinForm {
+.cardWrapper,
+.signinForm {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -93,7 +94,7 @@ h2 {
   }
   button {
     width: 100%;
-    margin-top: 5px;
+    margin-top: 20px;
     color: rgb(41, 111, 111);
     border: 2px solid rgb(93, 168, 168);
     font-size: 1em;

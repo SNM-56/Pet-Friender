@@ -4,8 +4,6 @@ import MainContainer from '../container/MainContainer';
 import FavPage from '../component/FavPage';
 
 const Home = () => {
-  console.log('hello');
-
   const [onSwiperPage, setOnSwiperPage] = useState(true);
   const [savedCards, setSavedCards] = useState([]);
 
