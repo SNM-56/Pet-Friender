@@ -9,16 +9,27 @@ const Home = () => {
   const [onSwiperPage, setOnSwiperPage] = useState(true);
   const [savedCards, setSavedCards] = useState([]);
 
-  
   let pageToDisplay;
   if (!onSwiperPage) {
-    pageToDisplay = <FavPage savedCards={savedCards} setSavedCards={setSavedCards} onSwiperPage={onSwiperPage} setOnSwiperPage={setOnSwiperPage} />;
+    pageToDisplay = (
+      <FavPage
+        savedCards={savedCards}
+        setSavedCards={setSavedCards}
+        onSwiperPage={onSwiperPage}
+        setOnSwiperPage={setOnSwiperPage}
+      />
+    );
   } else {
-    pageToDisplay = <MainContainer savedCards={savedCards} setSavedCards={setSavedCards} onSwiperPage={onSwiperPage} setOnSwiperPage={setOnSwiperPage} />;
+    pageToDisplay = (
+      <MainContainer
+        savedCards={savedCards}
+        setSavedCards={setSavedCards}
+        onSwiperPage={onSwiperPage}
+        setOnSwiperPage={setOnSwiperPage}
+      />
+    );
   }
 
-
-  
   return (
     <div className="homepage">
       <div>{pageToDisplay}</div>

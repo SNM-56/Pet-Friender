@@ -19,8 +19,8 @@ const petController = {};
 // const secret = 'M1rtNVQmo9G5SrmqR73hxXXbclcpjgT8odPyskCB'
 
 //jason's key/secret
-const idKey = 'Fl7qnYb3k3vMNCW08WCqEDKRo4LKG8mfJh3SnjVg8tLoL2gVEE'
-const secret = 'hrVXJ4xUJobzvFnC9VqmbQaZksc9HYPCHv9zWWTz'
+const idKey = 'Fl7qnYb3k3vMNCW08WCqEDKRo4LKG8mfJh3SnjVg8tLoL2gVEE';
+const secret = 'hrVXJ4xUJobzvFnC9VqmbQaZksc9HYPCHv9zWWTz';
 
 // gets auth token from petFinder API
 petController.getAuthToken = async (req, res, next) => {
@@ -39,11 +39,7 @@ petController.getAuthToken = async (req, res, next) => {
     res.locals.authToken = await petFinderRes.json();
     return next();
   } catch (e) {
-    return next({
-      log: 'Error in petController.getAuthToken',
-      status: 400,
-      message: { err: `in petController.getAuthToken: ${e}` }
-    });
+    return next('Error in petController.getAuthToken', e);
   }
 };
 
@@ -61,11 +57,7 @@ petController.getAllPets = async (req, res, next) => {
     res.locals.pets = json.animals;
     return next();
   } catch (e) {
-    return next({
-      log: 'Error in petController.getPets',
-      status: 400,
-      message: { err: `in petController.getAllPets: ${e}` }
-    });
+    return next('Error in petController.getAllPets', e);
   }
 };
 
@@ -83,11 +75,7 @@ petController.getAllDogs = async (req, res, next) => {
     res.locals.dogs = json.animals;
     return next();
   } catch (e) {
-    return next({
-      log: 'Error in petController.getPets',
-      status: 400,
-      message: { err: `in petController.getPets: ${e}` }
-    });
+    return next('Error in petController.getAllDogs', e);
   }
 };
 
@@ -120,11 +108,7 @@ petController.getPreferences = async (req, res, next) => {
     res.locals.preferences = json.animals;
     return next();
   } catch (e) {
-    return next({
-      log: 'Error in petController.getPreferences',
-      status: 400,
-      message: { err: `in petController.getPreferences: ${e}` }
-    });
+    return next('Error in petController.getPreferences', e);
   }
 };
 

@@ -1,12 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function PreferenceForm({ userData, setUserData, preferenceClicked, setPreferenceClicked }) {
+function PreferenceForm({ userData, setUserData }) {
+  const navigate = useNavigate();
+
   const onHandleClick = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userPreferences = {
       ...userData,
-      preferences: {
+      preference: {
         type: formData.get('species'),
         age: formData.get('age'),
         gender: formData.get('gender'),
@@ -14,10 +17,23 @@ function PreferenceForm({ userData, setUserData, preferenceClicked, setPreferenc
       }
     };
     setUserData(userPreferences);
-    setPreferenceClicked(true);
+    createUser(userPreferences);
   };
 
-  console.log(userData);
+  const createUser = async (data) => {
+    try {
+      await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+    } catch (error) {
+      console.log('Error in PreferenceForm', error);
+    }
+    navigate('/swiper');
+  };
 
   return (
     <div className="preferenceForm">

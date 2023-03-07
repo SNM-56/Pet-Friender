@@ -5,7 +5,7 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
   const [dogData, setDogData] = useState([]);
   const [cards, setCards] = useState([]);
   const [lastDirection, setLastDirection] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   // const [savedCards, setSavedCards] = useState([]);
 
   // utility function for swiping
@@ -21,7 +21,7 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
     // setState, passing in new array
     setLastDirection(direction);
     if (direction === 'right') {
-      setSavedCards(savedCards => [...savedCards, dogObj]);
+      setSavedCards((savedCards) => [...savedCards, dogObj]);
     }
   };
 
@@ -30,15 +30,14 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
     console.log(name + ' left the screen!');
   };
 
-  // change OnSwiperPage to false when main conainter button is clicked 
+  // change OnSwiperPage to false when main conainter button is clicked
   const onHandleClick = (e) => {
     e.preventDefault();
     setOnSwiperPage(false);
-  }
+  };
 
   // processes dog data and creates cards
   const dogCards = () => {
-    
     // console.log(dogData[0])
     const processedCards =
       dogData &&
@@ -50,8 +49,8 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
           <TinderCard
             className="swipe"
             key={dog.id}
-            onSwipe={(dir) => swiped(dir, {dogName} ,{imgUrl}, savedCards, setSavedCards)}
-            onCardLeftScreen={() => outOfFrame({dogName})}>
+            onSwipe={(dir) => swiped(dir, { dogName }, { imgUrl }, savedCards, setSavedCards)}
+            onCardLeftScreen={() => outOfFrame({ dogName })}>
             <div
               key={dog.id}
               className="card"
@@ -65,14 +64,14 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
         );
       });
     setCards(processedCards);
-    setIsLoading(false);
+    // setIsLoading(false);
   };
 
   // fetches dog data from backend
   useEffect(() => {
     const fetchDogs = async () => {
       try {
-        setIsLoading(true);
+        // setIsLoading(true);
         const response = await fetch('/api/preferences', {
           method: 'POST',
           headers: {
@@ -81,7 +80,7 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
           body: JSON.stringify({ id: 22 }) // THIS IS SAMPLE ID, CHANGE ME
         });
         const data = await response.json();
-        // console.log('RESPONSE DATA', await data);
+        console.log('RESPONSE DATA IN MAIN CONTAINER', data);
         setDogData(data);
       } catch (error) {
         console.log('Error in MainContainer useEffect to fetch dogs', error);
@@ -95,7 +94,6 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
     dogCards();
   }, [dogData]);
 
-
   // if lastDirection is right, we will invoke setSavedCards by passing in the dog id to the existing saveCards
   // useEffect(() => {
   //   if (lastDirection === 'right') {
@@ -103,22 +101,21 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
   //   }
   // });
 
-
   return (
     <div className="cardWrapper">
-      <h1>Pet swiper here</h1>
+      <h1>Find your furry soulmate</h1>
       {dogData.length === 0 ? (
         <div
           className="card"
           style={{
-            backgroundImage: `url(https://media2.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif)`,
+            backgroundImage: `url(https://cdn.dribbble.com/users/77598/screenshots/12570694/media/8eaa19b2448ee8719f559e4d1ec931bc.gif)`,
             backgroundSize: 'cover'
           }}></div>
       ) : (
         <div className="cardContainer">{cards}</div>
       )}
       {lastDirection ? <h2 className="infoText">You swiped {lastDirection}</h2> : <h2 className="infoText" />}
-      <button className='viewPets-Btn' onClick={onHandleClick}>View Favorite Pets</button>
+      <button onClick={onHandleClick}>View Favorite Pets</button>
     </div>
   );
 };
