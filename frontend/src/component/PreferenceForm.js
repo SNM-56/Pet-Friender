@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function PreferenceForm({ userData, setUserData, preferenceClicked, setPreferenceClicked }) {
+function PreferenceForm({ userData, setUserData }) {
+  const navigate = useNavigate();
+
   const onHandleClick = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -15,7 +18,6 @@ function PreferenceForm({ userData, setUserData, preferenceClicked, setPreferenc
     };
     setUserData(userPreferences);
     createUser(userPreferences);
-    setPreferenceClicked(true);
   };
 
   const createUser = async (data) => {
@@ -30,6 +32,7 @@ function PreferenceForm({ userData, setUserData, preferenceClicked, setPreferenc
     } catch (error) {
       console.log('Error in PreferenceForm', error);
     }
+    navigate('/swiper');
   };
 
   return (

@@ -27,6 +27,10 @@ app.post('/signup', dbController.checkValid, dbController.createUser, dbControll
   res.status(200).json(res.locals.body);
 });
 
+app.post('/signin', dbController.signIn, (req, res) => {
+  res.status(200).send(res.locals.isSignedIn);
+});
+
 // gets all pets from PetFinder API
 app.get('/api/all', petController.getAuthToken, petController.getAllPets, (req, res) => {
   res.status(200).send(res.locals.pets);
@@ -34,15 +38,15 @@ app.get('/api/all', petController.getAuthToken, petController.getAllPets, (req, 
 
 // global error handler
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
-    status: 500,
-    message: { err: 'An error occurred' }
-  };
-  const errorObj = Object.assign({}, defaultErr, err);
-  console.log(errorObj.log);
-  return res.status(errorObj.status).json(errorObj.message);
-});
+// app.use((err, req, res, next) => {
+//   const defaultErr = {
+//     log: 'Express error handler caught unknown middleware error',
+//     status: 500,
+//     message: { err: 'An error occurred' }
+//   };
+//   const errorObj = Object.assign({}, defaultErr, err);
+//   console.log(errorObj.log);
+//   return res.status(errorObj.status).json(errorObj.message);
+// });
 
 app.listen(port, () => console.log(`listening on port: ${port}`));

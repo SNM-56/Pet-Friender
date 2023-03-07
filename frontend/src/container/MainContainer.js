@@ -27,6 +27,8 @@ const DogSwiper = () => {
       dogData.map((dog) => {
         const url = 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/60481973/1/?bust=1678048544&width=450';
         const imgUrl = dog.primary_photo_cropped !== null ? dog.primary_photo_cropped.medium : url;
+        const { name } = dog;
+
         return (
           <TinderCard
             className="swipe"
@@ -40,7 +42,7 @@ const DogSwiper = () => {
                 backgroundImage: `url(${imgUrl})`,
                 backgroundSize: 'cover'
               }}>
-              <h3>{dog.name}</h3>
+              <h3>{name}</h3>
             </div>
           </TinderCard>
         );

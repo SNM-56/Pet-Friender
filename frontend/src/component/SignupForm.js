@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate, Link, Route } from 'react-router-dom';
 
-function SignupForm({ setUserData, userData, setSignUpClicked }) {
+function SignupForm({ setUserData, userData }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [location, setLocation] = useState('');
+
+  const navigate = useNavigate();
 
   const onInput = (e, setState) => {
     setState(e.target.value);
@@ -25,7 +28,7 @@ function SignupForm({ setUserData, userData, setSignUpClicked }) {
       }
     };
     setUserData(newUserData);
-    setSignUpClicked(true);
+    navigate('/preferences');
   };
 
   // Set up user info
