@@ -3,8 +3,8 @@ const petController = {};
 
 // TODO (Chris/Alex): Modify to use environment variables to store idKey and secret
 //alex's key/secret
-const idKey = 'Td80x9tGqOQnNnlwX3oKu9hjvYBqbYZnuzGwijbPd4iEmsb7EH';
-const secret = 'SdDvmwwjpY4zjKYCpmGtwqGznXQu5JxY4ro8jOfK';
+// const idKey = 'Td80x9tGqOQnNnlwX3oKu9hjvYBqbYZnuzGwijbPd4iEmsb7EH';
+// const secret = 'SdDvmwwjpY4zjKYCpmGtwqGznXQu5JxY4ro8jOfK';
 
 //tricia's keys
 // const idKey = 'ETP9nJrnccMT9nAYIQpa8zxOKgrIJUyIMFsJNjXWIfg9jpAwd9'
@@ -19,8 +19,8 @@ const secret = 'SdDvmwwjpY4zjKYCpmGtwqGznXQu5JxY4ro8jOfK';
 // const secret = 'M1rtNVQmo9G5SrmqR73hxXXbclcpjgT8odPyskCB'
 
 //jason's key/secret
-const idKey = 'Fl7qnYb3k3vMNCW08WCqEDKRo4LKG8mfJh3SnjVg8tLoL2gVEE'
-const secret = 'hrVXJ4xUJobzvFnC9VqmbQaZksc9HYPCHv9zWWTz'
+const idKey = 'Fl7qnYb3k3vMNCW08WCqEDKRo4LKG8mfJh3SnjVg8tLoL2gVEE';
+const secret = 'hrVXJ4xUJobzvFnC9VqmbQaZksc9HYPCHv9zWWTz';
 
 // gets auth token from petFinder API
 petController.getAuthToken = async (req, res, next) => {

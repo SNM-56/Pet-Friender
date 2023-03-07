@@ -56,13 +56,10 @@ h2 {
   justify-content: center;
   width: auto;
 }
-.signupForm,
-.preferenceForm {
-  background: #ff90e8;
-}
+
 .signupForm,
 .preferenceForm,
-.cardWrapper {
+.cardWrapper .signinForm {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -70,7 +67,8 @@ h2 {
   padding: 2em 2.5em 4em 2em;
   margin-top: 2em;
   border-radius: 2em;
-  background: white;
+  background: rgb(233, 233, 233);
+
   div {
     margin-top: 0.5em;
   }
@@ -94,9 +92,9 @@ h2 {
     font-family: 'Open Sans', sans-serif;
   }
   button {
-    width: 105%;
-    margin-top: 2em;
-    color: rgb(120, 209, 209);
+    width: 100%;
+    margin-top: 5px;
+    color: rgb(41, 111, 111);
     border: 2px solid rgb(93, 168, 168);
     font-size: 1em;
     font-weight: bold;
@@ -120,11 +118,11 @@ h2 {
   width: 90vw;
   max-width: 260px;
   height: 300px;
-  background: white;
+  background: rgb(233, 233, 233);
 }
 .card {
   position: relative;
-  background-color: #ffffff;
+  background-color: rgb(233, 233, 233);
   width: 80vw;
   max-width: 260px;
   height: 300px;
@@ -144,6 +142,7 @@ h2 {
   bottom: 0;
   margin: 10px;
   color: white;
+  text-shadow: rgb(66, 65, 62) 1px 0 10px;
 }
 .infoText {
   width: 100%;
@@ -202,4 +201,64 @@ h2 {
   100% {
     transform: scale(1, 1);
   }
+}
+
+// .homeToMain-Btn,
+// .viewPets-Btn {
+//   background-color: #222;
+//   border-radius: 4px;
+//   border-style: none;
+//   box-sizing: border-box;
+//   color: #fff;
+//   cursor: pointer;
+//   display: inline-block;
+//   font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
+//   font-size: 16px;
+//   font-weight: 700;
+//   line-height: 1.5;
+//   margin: 0;
+//   max-width: none;
+//   min-height: 44px;
+//   min-width: 10px;
+//   outline: none;
+//   overflow: hidden;
+//   padding: 9px 20px 8px;
+//   position: relative;
+//   text-align: center;
+//   text-transform: none;
+//   user-select: none;
+//   -webkit-user-select: none;
+//   touch-action: manipulation;
+//   width: 100%;
+// }
+
+// .homeToMain-Btn:hover,
+// .viewPets-Btn:hover,
+// .homeToMain-Btn:focus
+// .viewPets-Btn:focus {
+//   opacity: .75;
+// }
+
+.favoritePets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.favoritePets img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 50%;
+}
+
+.favoritePets img:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.favoritePets h3 {
+  text-align: center;
 }
