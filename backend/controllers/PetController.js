@@ -11,12 +11,16 @@ const petController = {};
 // const secret = '0a8locc2QKcZd8gj9gfCfHz4ZzZoGIsJlyqZd45p'
 
 // chris' key/secret
-const idKey = 'NkAKvJ91IkpakFYHnV8HYcgyqeOdFcYQvnWOlKrhptNrn4kFz8';
-const secret = 'pmNPLwJqpIR6rxDpl49qY1VjVg5zvRug8Kza60WW';
+// const idKey = 'NkAKvJ91IkpakFYHnV8HYcgyqeOdFcYQvnWOlKrhptNrn4kFz8';
+// const secret = 'pmNPLwJqpIR6rxDpl49qY1VjVg5zvRug8Kza60WW';
 
 // jamie's key/secret
 // const idKey = 'EGPxXXOai1WgDyLsFOWSQXpVHrX7JQ3SDxvBkAwdfl1NzTC60l'
 // const secret = 'M1rtNVQmo9G5SrmqR73hxXXbclcpjgT8odPyskCB'
+
+//jason's key/secret
+const idKey = 'Fl7qnYb3k3vMNCW08WCqEDKRo4LKG8mfJh3SnjVg8tLoL2gVEE'
+const secret = 'hrVXJ4xUJobzvFnC9VqmbQaZksc9HYPCHv9zWWTz'
 
 // gets auth token from petFinder API
 petController.getAuthToken = async (req, res, next) => {

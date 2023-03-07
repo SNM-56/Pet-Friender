@@ -1,62 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
 
-<<<<<<< HEAD
-// const DogSwiper = () => {
-//   const onSwipe = (direction) => {
-//       console.log('You swiped: ' + direction)
-//     };
-
-//   const onCardLeftScreen = (myIdentifier) => {
-//     console.log(myIdentifier + ' left the screen');
-//   }
-//   return (
-//     <TinderCard onSwipe={onSwipe} onCardLeftScreen={() => onCardLeftScreen('fooBar')} preventSwipe={['right', 'left']}>Hello, World!</TinderCard>
-//     // <TinderCard>Dog Swiper</TinderCard>
-//   //   <div className="swiping-component">
-//   //     <p>MainContainer component is loaded</p>
-//   //   </div>
-//    );
-// };
-
-const db = [
-  {
-    name: 'Dubs',
-    url: 'https://images.seattletimes.com/wp-content/uploads/2018/03/dubs1.jpg?d=780x495'
-  },
-  {
-    name: 'Golden Girl',
-    url: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*'
-  },
-  {
-    name: 'Cheeky Boy',
-    url: 'https://d.newsweek.com/en/full/2074004/puppy.jpg'
-  },
-  {
-    name: 'Grumpy Boy',
-    url: 'https://media.istockphoto.com/id/460588321/photo/mean-dog.jpg?s=612x612&w=0&k=20&c=Xeq9HpMEjdNQhhgus3hOLfxvL47gucbFy-oQOerYF20='
-  },
-  {
-    name: 'Little Meow Meow',
-    url: 'https://i.pinimg.com/originals/05/39/f6/0539f678c0ffae8b9d263e9b54055a98.jpg'
-  }
-];
-
-const DogSwiper = () => {
-  const characters = db;
-  const [dogData, setDogData] = useState();
-=======
-const DogSwiper = () => {
+const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards }) => {
   const [dogData, setDogData] = useState([]);
   const [cards, setCards] = useState([]);
->>>>>>> dev
   const [lastDirection, setLastDirection] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  // const [savedCards, setSavedCards] = useState([]);
 
   // utility function for swiping
-  const swiped = (direction, nameToDelete) => {
+  const swiped = (direction, nameToDelete, dogImage, savedCards, setSavedCards) => {
     console.log('removing: ' + nameToDelete);
+    // console.log('dogImage', dogImage);
+    // create new obj with name and url
+    const dogObj = {
+      name: nameToDelete,
+      url: dogImage
+    };
+    // pass that into new array with the existing array elements using ...
+    // setState, passing in new array
     setLastDirection(direction);
+    if (direction === 'right') {
+      setSavedCards(savedCards => [...savedCards, dogObj]);
+    }
   };
 
   // utility function for out of frame
@@ -64,25 +30,28 @@ const DogSwiper = () => {
     console.log(name + ' left the screen!');
   };
 
-<<<<<<< HEAD
-  useEffect(() => {
-    const fetchDogs = async () => {
-      try {
-        const response = await fetch('/api/dogs');
-=======
+  // change OnSwiperPage to false when main conainter button is clicked 
+  const onHandleClick = (e) => {
+    e.preventDefault();
+    setOnSwiperPage(false);
+  }
+
   // processes dog data and creates cards
   const dogCards = () => {
+    
+    // console.log(dogData[0])
     const processedCards =
       dogData &&
       dogData.map((dog) => {
         const url = 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/60481973/1/?bust=1678048544&width=450';
         const imgUrl = dog.primary_photo_cropped !== null ? dog.primary_photo_cropped.medium : url;
+        const dogName = dog.name !== 'Dog' ? dog.name : 'I still need a name! :-(';
         return (
           <TinderCard
             className="swipe"
             key={dog.id}
-            onSwipe={(dir) => swiped(dir, dog.name)}
-            onCardLeftScreen={() => outOfFrame(dog.name)}>
+            onSwipe={(dir) => swiped(dir, {dogName} ,{imgUrl}, savedCards, setSavedCards)}
+            onCardLeftScreen={() => outOfFrame({dogName})}>
             <div
               key={dog.id}
               className="card"
@@ -90,7 +59,7 @@ const DogSwiper = () => {
                 backgroundImage: `url(${imgUrl})`,
                 backgroundSize: 'cover'
               }}>
-              <h3>{dog.name}</h3>
+              <h3>{dogName}</h3>
             </div>
           </TinderCard>
         );
@@ -111,7 +80,6 @@ const DogSwiper = () => {
           },
           body: JSON.stringify({ id: 22 }) // THIS IS SAMPLE ID, CHANGE ME
         });
->>>>>>> dev
         const data = await response.json();
         // console.log('RESPONSE DATA', await data);
         setDogData(data);
@@ -122,45 +90,23 @@ const DogSwiper = () => {
     fetchDogs();
   }, []);
 
-<<<<<<< HEAD
-  console.log('Dog Data:', dogData);
-  // const logger = () => {
-  //   async () => console.log('in Logger', await dogData);
-  // }
-
-  // logger();
-
-  // create a func
-  // fetch (/api/dogs)
-  // get the data and json
-  // store that data in state using useState
-
-  // have a useEffect function that calls the fetch func
-=======
   // runs dogCards when dogData is updated
   useEffect(() => {
     dogCards();
   }, [dogData]);
 
->>>>>>> dev
+
+  // if lastDirection is right, we will invoke setSavedCards by passing in the dog id to the existing saveCards
+  // useEffect(() => {
+  //   if (lastDirection === 'right') {
+
+  //   }
+  // });
+
+
   return (
-    <div>
+    <div className="cardWrapper">
       <h1>Pet swiper here</h1>
-<<<<<<< HEAD
-      <div className="cardContainer">
-        {characters.map((character) => (
-          <TinderCard
-            className="swipe"
-            key={character.name}
-            onSwipe={(dir) => swiped(dir, character.name)}
-            onCardLeftScreen={() => outOfFrame(character.name)}>
-            <div style={{ backgroundImage: 'url(' + character.url + ')' }} className="card">
-              <h3>{character.name}</h3>
-            </div>
-          </TinderCard>
-        ))}
-      </div>
-=======
       {dogData.length === 0 ? (
         <div
           className="card"
@@ -171,8 +117,8 @@ const DogSwiper = () => {
       ) : (
         <div className="cardContainer">{cards}</div>
       )}
->>>>>>> dev
       {lastDirection ? <h2 className="infoText">You swiped {lastDirection}</h2> : <h2 className="infoText" />}
+      <button className='viewPets-Btn' onClick={onHandleClick}>View Favorite Pets</button>
     </div>
   );
 };
