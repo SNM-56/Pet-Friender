@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import SignupForm from './SignupForm';
-import DogSwiper from '../container/MainContainer';
 import { useNavigate } from 'react-router-dom';
 
 const SignInForm = () => {
@@ -51,7 +49,7 @@ const SignInForm = () => {
   return (
     <div className="signinForm">
       <form onSubmit={handleSubmit}>
-        <h1>Sign-in?</h1>
+        <h1>Sign-in</h1>
         <div>
           <label htmlFor="name">Email</label>
           <input onInput={(e) => onInput(e, setUserEmail)} type="text" name="name" required />

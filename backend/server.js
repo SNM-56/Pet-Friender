@@ -23,7 +23,7 @@ app.post(
   }
 );
 
-app.post('/signup', dbController.checkValid, dbController.createUser, dbController.endPool, (req, res) => {
+app.post('/signup', dbController.checkValid, dbController.createUser, (req, res) => {
   res.status(200).json(res.locals.body);
 });
 

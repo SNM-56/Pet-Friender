@@ -73,6 +73,7 @@ h2 {
   div {
     margin-top: 0.5em;
   }
+
   input,
   select,
   text {
@@ -87,14 +88,16 @@ h2 {
     background: #fff0f0;
     box-shadow: 4px 6px 0px #000000;
   }
+
   label {
     color: hsl(167, 14%, 12%);
-    font-size: 0.5rem;
+    font-size: 1rem;
     font-family: 'Open Sans', sans-serif;
   }
+
   button {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 1.5rem;
     color: rgb(41, 111, 111);
     border: 2px solid rgb(93, 168, 168);
     font-size: 1em;
@@ -109,13 +112,29 @@ h2 {
     z-index: 1;
     transition: all 0.5s;
   }
+
   button:hover {
     color: white;
     background: rgb(34, 193, 195);
     // background: linear-gradient(to right, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
   }
+
+  .cardWrapper {
+    justify-content: center;
+    text-align: center;
+  }
+
+  a {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1em;
+    color: rgb(34, 193, 195);
+    font-weight: bold;
+    cursor: pointer;
+  }
 }
 .cardContainer {
+  align-self: center;
   width: 90vw;
   max-width: 260px;
   height: 300px;
@@ -123,6 +142,7 @@ h2 {
 }
 .card {
   position: relative;
+  align-self: center;
   background-color: rgb(233, 233, 233);
   width: 80vw;
   max-width: 260px;

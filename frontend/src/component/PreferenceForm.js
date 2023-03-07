@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 function PreferenceForm({ userData, setUserData }) {
   const navigate = useNavigate();
 
-  const onHandleClick = (e) => {
+  // calls setUserData
+  // calls createUser
+  // then navigates to /swiper
+  const onHandleClick = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userPreferences = {
@@ -17,12 +20,17 @@ function PreferenceForm({ userData, setUserData }) {
       }
     };
     setUserData(userPreferences);
-    createUser(userPreferences);
+    await createUser(userPreferences);
+    await navigate('/swiper');
   };
 
+  // does a POST to /signup
+  // then goes to dbController.checkValid
+  // then goes to dbController.createUser
+  // then goes to dbController.endPool
   const createUser = async (data) => {
     try {
-      await fetch('/signup', {
+      const result = await fetch('/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -32,7 +40,6 @@ function PreferenceForm({ userData, setUserData }) {
     } catch (error) {
       console.log('Error in PreferenceForm', error);
     }
-    navigate('/swiper');
   };
 
   return (

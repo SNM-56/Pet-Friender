@@ -17,8 +17,8 @@ const FavPage = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards }) =
     setOnSwiperPage(true);
   };
 
-  console.log('saved card name', savedCards[0].name);
-  console.log('saved card url', savedCards[0].url);
+  // console.log('saved card name', savedCards[0].name);
+  // console.log('saved card url', savedCards[0].url);
   //saved card name {dogName: 'HELP!! BEAR NEEDS FOSTER/ADOPTER '}
   //saved card url {imgUrl: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/60541288/4/?bust=1678131695&width=450'
 
@@ -33,7 +33,9 @@ const FavPage = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards }) =
           </div>
         ))}
       </div>
-      <button className="homeToMain-Btn" onClick={onHandleClick}>Find a new fur friend!</button>
+      <button className="homeToMain-Btn" onClick={onHandleClick}>
+        Find a new fur friend!
+      </button>
     </div>
   );
 };
