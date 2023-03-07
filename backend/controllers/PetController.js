@@ -3,8 +3,8 @@ const petController = {};
 
 // TODO (Chris/Alex): Modify to use environment variables to store idKey and secret
 //alex's key/secret
-// const idKey = 'Td80x9tGqOQnNnlwX3oKu9hjvYBqbYZnuzGwijbPd4iEmsb7EH';
-// const secret = 'SdDvmwwjpY4zjKYCpmGtwqGznXQu5JxY4ro8jOfK';
+const idKey = 'Td80x9tGqOQnNnlwX3oKu9hjvYBqbYZnuzGwijbPd4iEmsb7EH';
+const secret = 'SdDvmwwjpY4zjKYCpmGtwqGznXQu5JxY4ro8jOfK';
 
 //tricia's keys
 // const idKey = 'ETP9nJrnccMT9nAYIQpa8zxOKgrIJUyIMFsJNjXWIfg9jpAwd9'
@@ -39,11 +39,7 @@ petController.getAuthToken = async (req, res, next) => {
     res.locals.authToken = await petFinderRes.json();
     return next();
   } catch (e) {
-    return next({
-      log: 'Error in petController.getAuthToken',
-      status: 400,
-      message: { err: `in petController.getAuthToken: ${e}` }
-    });
+    return next('Error in petController.getAuthToken', e);
   }
 };
 
@@ -61,11 +57,7 @@ petController.getAllPets = async (req, res, next) => {
     res.locals.pets = json.animals;
     return next();
   } catch (e) {
-    return next({
-      log: 'Error in petController.getPets',
-      status: 400,
-      message: { err: `in petController.getAllPets: ${e}` }
-    });
+    return next('Error in petController.getAllPets', e);
   }
 };
 
@@ -83,11 +75,7 @@ petController.getAllDogs = async (req, res, next) => {
     res.locals.dogs = json.animals;
     return next();
   } catch (e) {
-    return next({
-      log: 'Error in petController.getPets',
-      status: 400,
-      message: { err: `in petController.getPets: ${e}` }
-    });
+    return next('Error in petController.getAllDogs', e);
   }
 };
 
@@ -120,11 +108,7 @@ petController.getPreferences = async (req, res, next) => {
     res.locals.preferences = json.animals;
     return next();
   } catch (e) {
-    return next({
-      log: 'Error in petController.getPreferences',
-      status: 400,
-      message: { err: `in petController.getPreferences: ${e}` }
-    });
+    return next('Error in petController.getPreferences', e);
   }
 };
 

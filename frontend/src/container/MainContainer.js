@@ -45,7 +45,12 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
       dogData.map((dog) => {
         const url = 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/60481973/1/?bust=1678048544&width=450';
         const imgUrl = dog.primary_photo_cropped !== null ? dog.primary_photo_cropped.medium : url;
+<<<<<<< HEAD
         const dogName = dog.name !== 'Dog' ? dog.name : 'I still need a name! :-(';
+=======
+        const { name } = dog;
+
+>>>>>>> chris/auth
         return (
           <TinderCard
             className="swipe"
@@ -59,7 +64,11 @@ const DogSwiper = ({ onSwiperPage, setOnSwiperPage, savedCards, setSavedCards })
                 backgroundImage: `url(${imgUrl})`,
                 backgroundSize: 'cover'
               }}>
+<<<<<<< HEAD
               <h3>{dogName}</h3>
+=======
+              <h3>{name}</h3>
+>>>>>>> chris/auth
             </div>
           </TinderCard>
         );
