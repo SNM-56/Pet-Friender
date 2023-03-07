@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function SignupForm({ setUserData, userData }) {
   const [name, setName] = useState('');
