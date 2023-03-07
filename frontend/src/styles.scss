@@ -1,41 +1,125 @@
 body {
-
-  input,
-  select,
-  text {
+  display:flex;
+  justify-content: center;
+  // background: #78D1D1;
+  background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(139,201,123,1) 80%, rgba(253,210,45,1) 100%);
+  text-align: center;
+  font-family: 'Roboto', 'Open Sans', sans-serif;
+}
+// #root {
+//     text-align: center;
+//     display: flex;
+//     justify-content: center;
+//     width: 100vw;
+//     min-height: 100vh;
+//     overflow: hidden;
+//     background: linear-gradient(#fff, #999);
+//     background-color: linear-gradient(#E66465, #9198E5);
+//   }
+* {
+  user-select: none;
+}
+#root>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.app {
+  overflow: hidden;
+}
+.app>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.row {
+  flex-direction: row !important;
+}
+.row>* {
+  margin: 5px;
+}
+h1 {
+  // font-family: 'Damion', cursive;
+  color: hsl(0, 0%, 0%);
+  text-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+}
+h2 {
+  color: #fff;
+}
+.swipe {
+  position: absolute;
+}
+.pets {
+  display: flex;
+  justify-content: center;
+  width: auto;
+}
+.signupForm, .preferenceForm {
+  background: #FF90E8;
+}
+.signupForm, .preferenceForm, .cardWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 2em 2.5em 4em 2em;
+  margin-top: 2em;
+  border-radius: 2em;
+  background: rgb(233, 233, 233);
+  
+  div {
+    margin-top: 0.5em;
+  }
+  input, select, text {
     width: 100%;
     padding: 6px 2px;
-    margin: 5px 0;
-    color: #959b93;
+    margin: 5px 3px;
+    color: #959B93;
     border: 2px solid rgb(120, 209, 209);
     border-radius: 10px;
     letter-spacing: 1px;
+    height: 2rem;
+    background: #FFF0F0;
+    box-shadow: 4px 6px 0px #000000;
   }
-
+  label {
+    color:hsl(167, 14%, 12%);
+    font-size: 0.5rem;
+    font-family: 'Open Sans', sans-serif;
+  }
   button {
     width: 100%;
-    margin-top: 2em;
-    box-sizing: border-box;
-    color: #000000;
-    border: 2px solid rgb(120, 209, 209);
+    color: rgb(41, 111, 111);
+    border: 2px solid rgb(93, 168, 168);
+    font-size: 1em;
+    font-weight: bold;
     border-radius: 10px;
     padding: 12px;
     letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: inset 0 0 0 0 hwb(167 2% 61%);
+    left: 22px;
+    top: 209px;
+    box-shadow: 4px 6px 0px #000000;
+    z-index: 1;
+    transition: all 0.5s;
+  }
+  button:hover {
+    color: white;
+    background: rgb(34,193,195);
+    // background: linear-gradient(to right, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
   }
 }
-
 .cardContainer {
   width: 90vw;
   max-width: 260px;
   height: 300px;
-  background: white;
+  background: rgb(233, 233, 233);
 }
-
 .card {
   position: relative;
-  background-color: #ffffff;
+  background-color: rgb(233, 233, 233);
   width: 80vw;
   max-width: 260px;
   height: 300px;
@@ -44,52 +128,37 @@ body {
   background-size: cover;
   background-position: center;
 }
-
 .cardContent {
   width: 100%;
   height: 100%;
 }
-
 // .swipe:last-of-type {
-
-    input, select, text {
-      width: 100%;
-      padding: 6px 2px; 
-      margin: 5px 3px;
-      color: #959b93;
-      border: 2px solid rgb(120, 209, 209);
-      border-radius: 10px;
-      letter-spacing: 1px;
-      height: 2rem;
-      background: #FFF0F0;
-      box-shadow: 4px 6px 0px #000000;
-
-    label {
-      color:hsl(167, 14%, 12%);
-      font-size: 0.5rem;
-      font-family: 'Open Sans', sans-serif;
-    }
 // }
-
 .card h3 {
   position: absolute;
   bottom: 0;
   margin: 10px;
-  color: #ffffff;
+  color: white;
+  text-shadow: rgb(66, 65, 62) 1px 0 10px;
 }
-
 .infoText {
   width: 100%;
   justify-content: center;
   display: flex;
-  color: #eaeaea;
+  color: #61A57B;
   animation-name: popup;
   animation-duration: 800ms;
 }
-
+.buttons {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+@media (max-width: 625px) {
+  .buttons {
+    flex-direction: column;
   }
 }
-
 .buttons button {
   flex-shrink: 0;
   padding: 10px;
@@ -97,65 +166,82 @@ body {
   border: none;
   color: #fff;
   font-size: 18px;
-  background-color: #9198e5;
+  background-color: #9198E5;
   transition: 200ms;
   margin: 10px;
   font-weight: bolder;
   width: 160px;
-  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
 }
-
 .buttons button:hover {
   transform: scale(1.05);
 }
-
 @keyframes popup {
-  0% {
-    transform: scale(1, 1);
-  }
-  
-  // .swipe:last-of-type {
-  
-  // }
-  
-  .card h3 {
-    position: absolute;
-    bottom: 0;
-    margin: 10px;
-    color: white;
-  }
-  
-  .infoText {
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    color: #61a57b;
-    animation-name: popup;
-    animation-duration: 800ms;
-
-  10% {
-    transform: scale(1.1, 1.1);
-  }
-  30% {
-    transform: scale(0.9, 0.9);
-  }
-  50% {
-    transform: scale(1, 1);
-  }
-  57% {
-    transform: scale(1, 1);
-  }
-  64% {
-    transform: scale(1, 1);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
+  0%   { transform: scale(1,1) }
+  10%  { transform: scale(1.1,1.1) }
+  30%  { transform: scale(.9,.9) }
+  50%  { transform: scale(1,1) }
+  57%  { transform: scale(1,1) }
+  64%  { transform: scale(1,1) }
+  100% { transform: scale(1,1) }
 }
 
-.lazyLoadPlaceholder {
+// .homeToMain-Btn, 
+// .viewPets-Btn {
+//   background-color: #222;
+//   border-radius: 4px;
+//   border-style: none;
+//   box-sizing: border-box;
+//   color: #fff;
+//   cursor: pointer;
+//   display: inline-block;
+//   font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
+//   font-size: 16px;
+//   font-weight: 700;
+//   line-height: 1.5;
+//   margin: 0;
+//   max-width: none;
+//   min-height: 44px;
+//   min-width: 10px;
+//   outline: none;
+//   overflow: hidden;
+//   padding: 9px 20px 8px;
+//   position: relative;
+//   text-align: center;
+//   text-transform: none;
+//   user-select: none;
+//   -webkit-user-select: none;
+//   touch-action: manipulation;
+//   width: 100%;
+// }
+
+// .homeToMain-Btn:hover,
+// .viewPets-Btn:hover,
+// .homeToMain-Btn:focus
+// .viewPets-Btn:focus {
+//   opacity: .75;
+// }
+
+.favoritePets {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+
+.favoritePets img {
+  width: 200px;
   height: 200px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 50%;
+}
+
+.favoritePets img:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.favoritePets h3 {
+  text-align: center;
 }
